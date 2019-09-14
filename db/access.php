@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Compet Vet Suivi Block
+ * Compet Vet Suivi Block Authorizations
  *
  * @package     blocks_competvetsuivi
  * @copyright   2019 CALL Learning <laurent@call-learning.fr>
@@ -24,12 +24,25 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_competvetsuivi';
-$plugin->release = '1.0.0';
-$plugin->version = 2019091402;
-$plugin->requires = 2018051700;
-$plugin->maturity = MATURITY_ALPHA;
+$capabilities = array(
 
-$plugin->dependencies = array(
-        'local_competvetsuivi' => ANY_VERSION,
+    'block/competvetsuivi:myaddinstance' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'user' => CAP_ALLOW
+        ),
+
+        'clonepermissionsfrom' => 'moodle/my:manageblocks'
+    ),
+
+    'block/competvetsuivi:addinstance' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        ),
+
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
 );

@@ -15,21 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Compet Vet Suivi Block
+ * Compet Vet Suivi Block: Language Strings
  *
  * @package     blocks_competvetsuivi
  * @copyright   2019 CALL Learning <laurent@call-learning.fr>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component = 'block_competvetsuivi';
-$plugin->release = '1.0.0';
-$plugin->version = 2019091402;
-$plugin->requires = 2018051700;
-$plugin->maturity = MATURITY_ALPHA;
-
-$plugin->dependencies = array(
-        'local_competvetsuivi' => ANY_VERSION,
-);
+$string['pluginname'] = 'Suivi des compétences';
+$string['block/competvetsuivi:myaddinstance'] = 'Ajouter une instance sur le Tableau de bord';
+$string['block/competvetsuivi:addinstance'] = 'Ajouter une instance';

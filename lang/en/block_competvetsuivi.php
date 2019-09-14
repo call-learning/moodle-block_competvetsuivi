@@ -21,5 +21,6 @@
  * @copyright   2019 CALL Learning <laurent@call-learning.fr>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['pluginname'] = 'Compet Vet Suivi Block';
-
+$string['pluginname'] = 'CompetVetsuivi';
+$string['block/competvetsuivi:myaddinstance'] = 'Add instance on Dashboard';
+$string['block/competvetsuivi:addinstance'] = 'Add instance';
