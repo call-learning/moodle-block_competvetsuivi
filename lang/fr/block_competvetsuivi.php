@@ -24,3 +24,5 @@
 $string['pluginname'] = 'Suivi des compétences';
 $string['block/competvetsuivi:myaddinstance'] = 'Ajouter une instance sur le Tableau de bord';
 $string['block/competvetsuivi:addinstance'] = 'Ajouter une instance';
+$string['block/competvetsuivi:canseeother'] = 'Peut voir les compétences d\'une autre personne';
+$string['userhasnomatrix'] = 'Vous n\'avez pas de Matrice de Compétence associée à votre utilisateur. Veuillez contacter votre administrateur.';

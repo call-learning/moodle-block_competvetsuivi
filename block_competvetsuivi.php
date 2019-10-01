@@ -13,6 +13,9 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+use local_competvetsuivi\matrix\matrix;
+use local_competvetsuivi\ueutils;
+use local_competvetsuivi\utils;
 
 /**
  * Compet Vet Suivi Block
@@ -29,8 +32,51 @@ class block_competvetsuivi extends block_base {
     }
 
     function get_content() {
-        global $CFG;
+        global $USER;
+
+        $this->content = new \stdClass();
+        $this->content->text = '';
+
+        $user = $USER;
+        if (has_capability( 'block/competvetsuivi:canseeother', context_system::instance(),$USER)) {
+            $foruser = optional_param('foruser', 0, PARAM_INT);
+            if ($foruser) {
+                $user = \core_user::get_user($foruser);
+            }
+        }
+        $matrixid = utils::get_matrixid_for_user($user->id);
+
+        if ($matrixid) {
+
+            $currentcompid = optional_param('competencyid', 0, PARAM_INT);
+
+            $matrix = new \local_competvetsuivi\matrix\matrix($matrixid);
+            $userdata = local_competvetsuivi\userdata::get_user_data($user->email);
+            $matrix->load_data();
+            $strandlist = array(matrix::MATRIX_COMP_TYPE_KNOWLEDGE, matrix::MATRIX_COMP_TYPE_ABILITY);
+            $lastseenue = local_competvetsuivi\userdata::get_user_last_ue_name($user->email);
+            $currentsemester = ueutils::get_current_semester_index($lastseenue, $matrix);
+            $currentcomp = null;
+            if ($currentcompid) {
+                $currentcomp = $matrix->comp[$currentcompid];
+            }
+
+            $progress_overview = new \local_competvetsuivi\output\competency_progress_overview(
+                    $currentcomp,
+                    $matrix,
+                    $strandlist,
+                    $userdata,
+                    $currentsemester
+            );
+            $renderer = $this->page->get_renderer('local_competvetsuivi');
+            $this->content->text = $renderer->render($progress_overview);
+        } else {
+            $this->content->text = get_string('userhasnomatrix', 'block_competvetsuivi');
+        }
+
+
         return $this->content;
+
     }
 
     function applicable_formats() {

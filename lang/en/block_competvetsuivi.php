@@ -24,3 +24,5 @@
 $string['pluginname'] = 'CompetVetsuivi';
 $string['block/competvetsuivi:myaddinstance'] = 'Add instance on Dashboard';
 $string['block/competvetsuivi:addinstance'] = 'Add instance';
+$string['block/competvetsuivi:canseeother'] = 'Can see someone else capability';
+$string['userhasnomatrix'] = 'You have no matrix associated to you. You need to be in a cohort which has been assigned to a competency matrix';
