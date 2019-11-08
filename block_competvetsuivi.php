@@ -47,7 +47,7 @@ class block_competvetsuivi extends block_base {
 
         if ($matrixid) {
 
-            $compidparamname = local_competvetsuivi\output\competency_progress_overview::PARAM_COMPID;
+            $compidparamname = local_competvetsuivi\renderable\competency_progress_overview::PARAM_COMPID;
             $currentcompid = optional_param($compidparamname, 0, PARAM_INT);
 
             $matrix = new \local_competvetsuivi\matrix\matrix($matrixid);
@@ -61,7 +61,7 @@ class block_competvetsuivi extends block_base {
                 $currentcomp = $matrix->comp[$currentcompid];
             }
 
-            $progress_overview = new \local_competvetsuivi\output\competency_progress_overview(
+            $progress_overview = new \local_competvetsuivi\renderable\competency_progress_overview(
                     $currentcomp,
                     $matrix,
                     $strandlist,
