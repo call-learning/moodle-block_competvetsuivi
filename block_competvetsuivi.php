@@ -24,7 +24,6 @@ use local_competvetsuivi\utils;
  * @copyright   2019 CALL Learning <laurent@call-learning.fr>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class block_competvetsuivi extends block_base {
 
     function init() {
@@ -38,7 +37,7 @@ class block_competvetsuivi extends block_base {
         $this->content->text = '';
 
         $user = $USER;
-        if (has_capability( 'block/competvetsuivi:canseeother', context_system::instance(),$USER)) {
+        if (has_capability('block/competvetsuivi:canseeother', context_system::instance(), $USER)) {
             $foruser = optional_param('foruser', 0, PARAM_INT);
             if ($foruser) {
                 $user = \core_user::get_user($foruser);
@@ -48,7 +47,8 @@ class block_competvetsuivi extends block_base {
 
         if ($matrixid) {
 
-            $currentcompid = optional_param('competencyid', 0, PARAM_INT);
+            $compidparamname = local_competvetsuivi\output\competency_progress_overview::PARAM_COMPID;
+            $currentcompid = optional_param($compidparamname, 0, PARAM_INT);
 
             $matrix = new \local_competvetsuivi\matrix\matrix($matrixid);
             $userdata = local_competvetsuivi\userdata::get_user_data($user->email);
@@ -73,7 +73,6 @@ class block_competvetsuivi extends block_base {
         } else {
             $this->content->text = get_string('userhasnomatrix', 'block_competvetsuivi');
         }
-
 
         return $this->content;
 
