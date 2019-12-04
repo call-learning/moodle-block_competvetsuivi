@@ -86,4 +86,7 @@ class block_competvetsuivi extends block_base {
         return false;
     }
 
+    function hide_header() {
+        return true;
+    }
 }
