@@ -22,7 +22,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 $string['pluginname'] = 'CompetVetsuivi';
-$string['block/competvetsuivi:myaddinstance'] = 'Add instance on Dashboard';
-$string['block/competvetsuivi:addinstance'] = 'Add instance';
-$string['block/competvetsuivi:canseeother'] = 'Can see someone else capability';
+$string['competvetsuivi:myaddinstance'] = 'Add instance on Dashboard';
+$string['competvetsuivi:addinstance'] = 'Add instance';
+$string['competvetsuivi:canseeother'] = 'Can see someone else capability';
 $string['userhasnomatrix'] = 'You have no matrix associated to you. You need to be in a cohort which has been assigned to a competency matrix';
