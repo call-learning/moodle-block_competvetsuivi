@@ -66,7 +66,8 @@ class block_competvetsuivi extends block_base {
                     $matrix,
                     $strandlist,
                     $userdata,
-                    $currentsemester
+                    $currentsemester,
+                    $user->id
             );
             $renderer = $this->page->get_renderer('local_competvetsuivi');
             $this->content->text = $renderer->render($progress_overview);
