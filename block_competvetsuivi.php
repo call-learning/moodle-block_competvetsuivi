@@ -13,24 +13,43 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Compet Vet Suivi Block
+ *
+ * @package     block_competvetsuivi
+ * @copyright   2019 CALL Learning <laurent@call-learning.fr>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 use local_competvetsuivi\matrix\matrix;
 use local_competvetsuivi\ueutils;
 use local_competvetsuivi\utils;
 
+defined('MOODLE_INTERNAL') || die();
 /**
  * Compet Vet Suivi Block
  *
- * @package     blocks_competvetsuivi
+ * @package     block_competvetsuivi
  * @copyright   2019 CALL Learning <laurent@call-learning.fr>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_competvetsuivi extends block_base {
 
-    function init() {
+    /**
+     * General intialiser
+     * @throws coding_exception
+     */
+    public function init() {
         $this->title = get_string('pluginname', 'block_competvetsuivi');
     }
 
-    function get_content() {
+    /**
+     * Get block content : the progress graph
+     * @return stdClass|stdObject|null
+     * @throws coding_exception
+     * @throws dml_exception
+     */
+    public function get_content() {
         global $USER;
 
         $this->content = new \stdClass();
@@ -61,7 +80,7 @@ class block_competvetsuivi extends block_base {
                 $currentcomp = $matrix->comp[$currentcompid];
             }
 
-            $progress_overview = new \local_competvetsuivi\renderable\competency_progress_overview(
+            $progressoverview = new \local_competvetsuivi\renderable\competency_progress_overview(
                     $currentcomp,
                     $matrix,
                     $strandlist,
@@ -70,7 +89,7 @@ class block_competvetsuivi extends block_base {
                     $user->id
             );
             $renderer = $this->page->get_renderer('local_competvetsuivi');
-            $this->content->text = $renderer->render($progress_overview);
+            $this->content->text = $renderer->render($progressoverview);
         } else {
             $this->content->text = get_string('userhasnomatrix', 'block_competvetsuivi');
         }
@@ -79,15 +98,27 @@ class block_competvetsuivi extends block_base {
 
     }
 
-    function applicable_formats() {
+    /**
+     * Make sure the block is only inserted in the dashboard
+     * @return array|bool[]
+     */
+    public function applicable_formats() {
         return array('my' => true);
     }
 
-    function instance_allow_multiple() {
+    /**
+     * No multiple instances
+     * @return bool
+     */
+    public function instance_allow_multiple() {
         return false;
     }
 
-    function hide_header() {
+    /**
+     * No headers
+     * @return bool
+     */
+    public function hide_header() {
         return true;
     }
 }
