@@ -1,0 +1,7 @@
+.block_competvetsuivi svg g.marker {
+    visibility: hidden;
+}
+
+.progress-cvs div.col:last-child {
+    visibility: hidden;
+}
